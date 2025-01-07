@@ -1,0 +1,24 @@
+[submodule "luasocket"]
+	path = luasocket
+	url = https://github.com/lunarmodules/luasocket
+[submodule "lua-cjson"]
+	path = lua-cjson
+	url = https://github.com/mpx/lua-cjson
+[submodule "luasec"]
+	path = luasec
+	url = https://github.com/lunarmodules/luasec
+[submodule "lua-openssl"]
+	path = lua-openssl
+	url = https://github.com/zhaozg/lua-openssl
+[submodule "luajit"]
+	path = luajit
+	url = https://luajit.org/git/luajit.git
+[submodule "inspect.lua"]
+	path = inspect.lua
+	url = https://github.com/kikito/inspect.lua
+[submodule "lua-protobuf"]
+	path = lua-protobuf
+	url = https://github.com/starwing/lua-protobuf
+[submodule "serpent"]
+	path = serpent
+	url = https://github.com/pkulchenko/serpent
