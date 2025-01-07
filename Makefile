@@ -1,6 +1,8 @@
 CC=gcc
 AR=ar
 CFLAGS= -O2 -Wall -fPIC -I luajit/src
+SOCKET_LIB=
+
 
 ifeq (Windows,$(findstring Windows,$(OS))$(MSYSTEM)$(TERM))
   HOST_SYS= Windows
@@ -18,6 +20,12 @@ else
     HOST_SYS= Windows
     HOST_MSYS= cygwin
   endif
+endif
+
+
+# windows下socket库
+ifeq ($(HOST_SYS), Windows)
+	SOCKET_LIB= -lws2_32
 endif
 
 # C 文件
@@ -104,7 +112,7 @@ LUAJIT_DEP= $(LUAJIT_SRC_DIR)/Makefile.dep1
 
 # 修改 luajit.c 文件
 make_luajit: $(LIB_A) $(LUAJIT_MODIFIED_C) $(LUAJIT_DEP)
-	 $(MAKE) -f Makefile -C luajit/src LIBS=" ../../lua_static_modules.a -lws2_32 -lssl -lcrypto " BUILDMODE=static LUAJIT_O="luajit_modified.o"
+	 $(MAKE) -f Makefile -C luajit/src LIBS=" ../../lua_static_modules.a $(SOCKET_LIB) -lssl -lcrypto " BUILDMODE=static LUAJIT_O="luajit_modified.o"
 
 # 生成 luajit_modified.c
 $(LUAJIT_MODIFIED_C): $(LUAJIT_C)
