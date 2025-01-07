@@ -1,8 +1,11 @@
 # 静态编译luajit
 
-静态编译luajit，并且包含一些第三方库
+静态编译luajit为独立文件，并且包含一些第三方库。
 
-- [X] luajit
+
+# 已经包含的第三方库
+
+- [x] luajit
 - [x] lua-cjson
 - [x] lua-openssl
 - [x] lua-protobuf
@@ -11,7 +14,7 @@
 - [x] inspect-lua
 - [x] serpent
 
-# 已经载入的模块
+## 可以require的模块
 ```
 cjson
 inspect
@@ -45,10 +48,28 @@ ssl.x509
 
 # 编译方法
 
+可静态编译的操作系统:
+- [X] mingw
+- [X] linux
+
+Todo:
+- [ ] openssl 静态编译
+
+
+## Linux
 ```
-apt install vim build-essential openssl-devel
-git submodule update --init
+apt install build-essential openssl-devel vim
+git clone --recursive https://github.com/fly-studio/luajit_static_modules
+cd luajit_static_modules
 make
 ```
 
-在mingw环境下测试编译通过，应该不支持visual c++
+## MingW
+```
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make openssl-devel vim
+git clone --recursive https://github.com/fly-studio/luajit_static_modules
+cd luajit_static_modules
+mingw32-make
+```
+
+会编译成一个独立的luajit.exe，只依赖OpenSSL的libssl-3-x64.dll、libcrypto-3-x64.dll
